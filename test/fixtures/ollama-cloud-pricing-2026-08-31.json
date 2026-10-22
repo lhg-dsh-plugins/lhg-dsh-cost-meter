@@ -1,0 +1,9 @@
+{
+  "sourceUrl": "https://registry.ollama.com/pricing",
+  "checkedAt": "2026-10-19",
+  "offPeakRule": "Off-peak pricing apply outside 12:00 and 18:00 UTC on weekdays and all day on weekends.",
+  "models": {
+    "deepseek-v4.1-flash": { "peak": { "input": 0.30, "cachedInput": 0.006, "output": 1.20 }, "offPeak": { "input": 0.15, "cachedInput": 0.003, "output": 0.60 } },
+    "deepseek-v4-pro": { "peak": { "input": 1.32, "cachedInput": 0.044, "output": 3.96 }, "offPeak": { "input": 0.66, "cachedInput": 0.022, "output": 1.98 } }
+  }
+}

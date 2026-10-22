@@ -1,0 +1,171 @@
+import assert from 'node:assert/strict'
+import { readFileSync, mkdtempSync, rmSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
+import vm from 'node:vm'
+import { resolveDshHome } from '@deepseek-ai/dsh-home-paths'
+import { sanitizeConfig, localDayKey } from '../lib/store.js'
+import { billingStatistics, statisticsQuery, ledgerStatisticsQuery } from '../lib/billing-statistics.js'
+import { getSessionBilling } from '../lib/turn-cost.js'
+import { cachedStatistics } from '../lib/statistics-cache.js'
+import { billingStatisticsSchema, sessionBillingSchema, TYPERT } from '../lib/typert.host.js'
+import { NATIVE_SEARCH_USAGE_EVENT } from '../lib/native-search-events.js'
+
+const usage = (cost, apiCost = cost, calls = 1) => ({ input: 100, output: 20, cacheRead: 50, cacheWrite: 10, reasoning: 5, calls, cost, apiCost })
+const price = { cacheMiss: 2, output: 8, cacheHit: .5, cacheWrite: 3, reasoning: 1 }
+const config = sanitizeConfig({ peakEnabled: false, prices: { providers: { test: { currency: 'USD', models: { m: price } } } } })
+const session = (id, cost, apiCost = cost) => ({ id, title: id + ' title', ...usage(cost, apiCost), byProviderModel: { 'test:m': usage(cost, apiCost) } })
+const day = (cost, apiCost, sessions, byProviderModel) => ({ ...usage(cost, apiCost, sessions.length), sessions, byProviderModel })
+const ledger = { config, days: {
+  '2026-09-28': day(12, 10, [session('parent', 10), session('child', 2, 0)], { 'test:m': usage(10), 'plan:m': usage(2, 0) }),
+  '2026-09-30': day(10, 7, [session('parent', 4), session('child', 3, 0)], { 'test:m': usage(4), 'plan:m': usage(3, 0), 'unknown:new': usage(1) }),
+} }
+// Legacy / unassigned residues are retained in totals, never fabricated as model or session rows.
+const before = JSON.stringify(ledger)
+const query = { from: '2026-09-28', to: '2026-09-30', provider: '', model: '', sessionId: '', basis: 'api', offset: 0 }
+const stats = billingStatisticsSchema.parse(billingStatistics(ledger, query))
+assert.equal(stats.totals.cost, 22)
+assert.equal(stats.totals.apiCost, 17)
+assert.equal(stats.sessions.length, 2, 'cross-day sessions appear once')
+assert.equal(stats.sessions[0].cost, 14)
+assert.equal(stats.sessionCount, 2, 'child and parent are counted separately without tree re-aggregation')
+assert.equal(stats.days[1].cost, 0, 'missing dates remain visible as zero days')
+assert.equal(stats.unassignedCost, 3)
+assert.equal(stats.unmodeledCost, 2)
+assert.equal(stats.models.find(m => m.key === 'unknown:new').priced, false)
+assert.equal(billingStatistics(ledger, { ...query, sessionId: 'parent' }).totals.cost, 14)
+assert.equal(billingStatistics(ledger, { ...query, sessionId: 'missing' }).totals.cost, 0)
+assert.equal(billingStatistics(ledger, { ...query, provider: 'plan' }).totals.cost, 5)
+assert.equal(billingStatistics(ledger, { ...query, provider: 'test', model: 'm' }).totals.apiCost, 14)
+assert.equal(billingStatistics(ledger, { ...query, basis: 'plan' }).sessions[0].id, 'child')
+assert.equal(billingStatistics(ledger, { ...query, from: '', to: '2026-09-30' }).from, '2026-09-28')
+assert.equal(JSON.stringify(ledger), before, 'statistics must not change stored money or configuration')
+for (const invalid of [{ from: '2026-02-30' }, { from: '2026-10-01', to: '2026-09-30' }, { offset: -1 }, { turnOffset: .5 }, { basis: 'anything' }, { from: '2000-01-01', to: '2026-09-30' }]) assert.throws(() => statisticsQuery({ ...query, ...invalid }))
+const many = { config, days: { '2026-09-30': day(50, 50, Array.from({ length: 50 }, (_, i) => session('s' + i, i + 1)), {}) } }
+const a = billingStatistics(many, { ...query, offset: 0 }), b = billingStatistics(many, { ...query, offset: 25 })
+assert.equal(a.sessionCount, 50)
+assert.equal(a.sessions.length, 25)
+assert.equal(new Set([...a.sessions, ...b.sessions].map(r => r.id)).size, 50)
+
+const root = mkdtempSync(join(tmpdir(), 'cm-statistics-'))
+try {
+  const at = Date.parse('2026-09-30T08:00:00Z')
+  const records = [
+    { type: 'request/header', seq: 0, time: at, data: { header: { config: { model: 'm', provider: 'test' } } } },
+    // A fork-inherited call must not be included in this conversation's detail.
+    { type: 'assistant/message', seq: 1, time: at - 1, data: { turn: -1, step: 0, usage: { inputTokens: 999999 } } },
+    ...Array.from({ length: 62 }, (_, i) => ({ type: 'assistant/message', seq: i + 2, time: at + i + 1, data: { turn: i, step: 0, usage: { inputTokens: 100, outputTokens: 20, cacheReadTokens: 50, cacheWriteTokens: 10, reasoningTokens: 5 } } })),
+  ]
+  const ctx = { get: key => key === 'sessions' ? { get: () => ({ header: { createdAt: at }, snapshotEvents: () => records }) } : undefined }
+  const detailLedger = { ...ledger, path: join(root, 'ledger.json') }
+  const q = { ...query, sessionId: 'parent', from: localDayKey(at), to: localDayKey(at) }
+  const detail = sessionBillingSchema.parse(await getSessionBilling(detailLedger, ctx, q))
+  assert.equal(detail.totalCalls, 62)
+  assert.equal(detail.calls.length, 50)
+  assert.equal(detail.rows.find(r => r.bucket === 'input').tokens, 6200)
+  assert.ok(Math.abs(detail.rows.reduce((n, r) => n + r.cost, 0) - detail.cost) < 1e-12)
+  const page2 = await getSessionBilling(detailLedger, ctx, { ...q, offset: 50 })
+  assert.equal(page2.calls.length, 12)
+  assert.equal(page2.cost, detail.cost, 'pagination cannot shrink the full-session amount')
+  assert.deepEqual(page2.callShares, detail.callShares, 'call chart is identical across call pages')
+  assert.equal(detail.callShares.length, 8, 'seven calls and one bounded remainder')
+  assert.equal(detail.callShares.at(-1).calls, 55)
+  assert.equal(detail.callShares.reduce((n, row) => n + row.calls, 0), 62)
+  assert.ok(Math.abs(detail.callShares.reduce((n, row) => n + row.cost, 0) - detail.cost) < 1e-12)
+  assert.equal(detail.callShares.reduce((n, row) => n + row.tokens, 0), 62 * 180, 'overlapping reasoning tokens are not added again')
+  for (const share of detail.callShares.filter(row => !row.other)) {
+    assert.deepEqual(share.call, detail.calls[share.index], 'rank entries carry their exact call identity and rates')
+    assert.equal(share.call.sessionId, 'parent')
+    assert.equal(share.call.logSeq, share.index + 2)
+    assert.equal(share.call.atMs, at + share.index + 1)
+  }
+  assert.equal(detail.callShares.at(-1).call, null, 'the combined remainder is not one inspectable call')
+  const expensiveRecords = records.map((row, i) => i === records.length - 1 ? { ...row, data: { ...row.data, usage: { inputTokens: 10000 } } } : row)
+  const expensiveCtx = { get: () => ({ get: () => ({ header: { createdAt: at }, snapshotEvents: () => expensiveRecords }) }) }
+  const expensive = await getSessionBilling(detailLedger, expensiveCtx, q)
+  assert.equal(expensive.callShares[0].index, 61, 'a high-cost call on the second page ranks first')
+  assert.equal(expensive.callShares[0].call.logSeq, 63)
+  assert.equal(expensive.callShares[0].call.atMs, at + 62)
+  assert.equal(expensive.callShares[0].call.rows[0].tokens, 10000)
+  const capturedCall = structuredClone(expensive.callShares[0].call)
+  const backfilledRecords = [...expensiveRecords, { type: 'assistant/message', seq: 200, time: at + .5, data: { turn: 99, step: 0, usage: { inputTokens: 1 } } }]
+  const backfilledCtx = { get: () => ({ get: () => ({ header: { createdAt: at }, snapshotEvents: () => backfilledRecords }) }) }
+  const backfilled = await getSessionBilling(detailLedger, backfilledCtx, q)
+  assert.equal(backfilled.callShares[0].index, 62, 'a late historical record can move the old chronological index')
+  assert.deepEqual(backfilled.callShares[0].call, capturedCall, 'the reference remains the same call after an index shift')
+
+  // Upgrade a persisted pre-popup cache without replaying the complete log on open.
+  const legacyLedger = { ...detailLedger, path: join(root, 'legacy-ledger.json') }
+  const legacyValue = { ...detail, calls: [...detail.calls, ...page2.calls], callShares: detail.callShares.map(({ call, ...row }) => row) }
+  const legacyQuery = { ...ledgerStatisticsQuery(legacyLedger, q), offset: 0, turnOffset: 0 }
+  await cachedStatistics(legacyLedger, ['billing-v2', resolveDshHome(), legacyQuery], { source: async () => 'legacy', build: async () => legacyValue, valid: () => true })
+  const restartedLedger = { ...legacyLedger }
+  const migrated = await getSessionBilling(restartedLedger, ctx, { ...q, background: true })
+  assert.equal(migrated.refreshing, true, 'a valid older snapshot paints before background refresh')
+  assert.deepEqual(migrated.callShares[0].call, detail.calls[0], 'same-snapshot indexes upgrade to exact references')
+  await getSessionBilling(restartedLedger, ctx, q)
+  assert.equal(detail.totalTurns, 62)
+  assert.equal(detail.turns.length, 25)
+  assert.equal(detail.calls[0].turn, 0)
+  const turns2 = await getSessionBilling(detailLedger, ctx, { ...q, turnOffset: 25 })
+  const turns3 = await getSessionBilling(detailLedger, ctx, { ...q, turnOffset: 50 })
+  assert.equal(new Set([...detail.turns, ...turns2.turns, ...turns3.turns].map(r => r.turn)).size, 62)
+  assert.equal(turns2.calls[0].turn, 0, 'turn pagination does not move the call page')
+  assert.equal((await getSessionBilling(detailLedger, ctx, { ...q, model: 'missing' })).found, false)
+  assert.equal(detail.recorded.cost, 4, 'detail preserves recorded amount even when log/current prices differ')
+  for (const rows of Object.values(detail.stepShares)) {
+    assert.equal(rows.length, 13)
+    assert.equal(rows.reduce((n, row) => n + row.calls, 0), 62, 'share denominators include calls on every page')
+    assert.ok(Math.abs(rows.reduce((n, row) => n + row.cost, 0) - detail.cost) < 1e-12)
+    assert.equal(rows.at(-1).other, true)
+  }
+
+  const search = { type: NATIVE_SEARCH_USAGE_EVENT, time: at + 100, data: { requestId: '11111111-2222-4333-8444-555555555555', startedAtMs: at + 100, provider: 'deepseek-official', model: 'deepseek-v4-flash',
+    usage: { inputTokens: 100, outputTokens: 20, cacheReadTokens: 50, cacheWriteTokens: 10, reasoningTokens: 5 } } }
+  const mixedRecords = [records[0], ...records.slice(2, 57).map((r, i) => ({ ...r, data: { ...r.data, turn: 2, step: i } })),
+    { type: 'compaction/summary', seq: 100, time: at + 90, data: { provider: 'test', model: 'm', usage: { inputTokens: 100 } } }, search, search]
+  const mixedCtx = { get: () => ({ get: () => ({ header: { createdAt: at }, snapshotEvents: () => mixedRecords }) }) }
+  const mixed = sessionBillingSchema.parse(await getSessionBilling({ ...detailLedger, config: { ...config, planBilling: { models: { 'test:m': 'plan' } } } }, mixedCtx, q))
+  assert.equal(mixed.totalCalls, 57, 'duplicate native search is counted once')
+  assert.equal(mixed.turns.find(r => r.turn === 2).calls, 55, 'one turn spans multiple call pages without truncation')
+  assert.equal(mixed.turns.find(r => r.turn === null).calls, 2, 'unrecorded round is not guessed for search or compaction')
+  assert.equal(mixed.kinds.find(r => r.kind === 'model').apiCost, 0, 'Plan equivalent stays separate')
+  assert.equal(mixed.calls[0].step, 0)
+  for (const key of ['cost', 'apiCost']) for (const groups of [mixed.turns, mixed.kinds]) assert.ok(Math.abs(groups.reduce((n, r) => n + r[key], 0) - mixed[key]) < 1e-12)
+  for (const basis of ['api', 'plan', 'total']) {
+    const ranked = await getSessionBilling({ ...detailLedger, config: { ...config, planBilling: { models: { 'test:m': 'plan' } } } }, mixedCtx, { ...q, basis })
+    const value = row => basis === 'api' ? row.apiCost : basis === 'plan' ? row.cost - row.apiCost : row.cost
+    assert.ok(Math.abs(ranked.callShares.reduce((n, row) => n + value(row), 0) - value(ranked)) < 1e-12)
+    assert.ok(ranked.callShares.slice(0, -1).every((row, i, rows) => !i || value(row) <= value(rows[i - 1])), 'ranking follows the selected cost basis')
+  }
+  const unknownLedger = { ...detailLedger, config: { ...config, prices: { providers: {} } } }
+  const unknown = await getSessionBilling(unknownLedger, ctx, q)
+  assert.ok(unknown.callShares.every(row => row.unpriced), 'unknown prices remain unknown, including the remainder')
+
+  let factory
+  const react = { createElement() {}, useEffect() {}, useState() {} }
+  vm.runInNewContext(readFileSync(new URL('../lib/client.statistics.js', import.meta.url), 'utf8'), { window: { __ModuleLoader__: { load: value => { assert.equal(value.chunk, 'client.statistics.js'); factory = value.factory } } } })
+  const client = factory(id => { assert.equal(id, 'react'); return react })
+  assert.deepEqual(JSON.parse(JSON.stringify(client.parseStatistics(stats))), stats)
+  assert.deepEqual(JSON.parse(JSON.stringify(client.parseDetail(detail))), detail)
+  assert.throws(() => client.parseStatistics({ ...stats, totals: { ...stats.totals, cost: NaN } }))
+  for (const item of client.CONTRIBUTION.descriptors) {
+    const host = TYPERT.invocations.find(i => i.id === item.id)
+    assert.ok(host, 'the lazy client has a matching host invocation')
+    assert.equal(item.result.typeSymbol, host.result.typeSymbol)
+    const sample = {
+      getBillingStatistics: stats,
+      getSessionBilling: { ...detail, refreshing: false, generatedAt: detail.generatedAt ?? 0, refreshFailed: false },
+      getTurnInspection: { found: false, turn: 0, input: '', inputTruncated: false, tools: [], totalTools: 0, offset: 0 },
+      getSessionTrajectory: { refreshing: false, generatedAt: 0, refreshFailed: false, tiles: [], cost: 0, apiCost: 0, totalSteps: 0, totalCalls: 0, matchingSteps: 0, order: 'time', offset: 0, shares: [], groups: [], operations: [], operationGroups: [], distribution: [], hierarchy: [], steps: [] },
+      getCallInspection: { found: false, kind: 'model', input: '', injected: '', skills: '', precedingTools: '', output: '', reasoning: '', truncated: false, tools: [], totalTools: 0, offset: 0 },
+      getContextCosts: { status: 'unavailable', sessionId: 's', generatedAt: at, revision: 0, provider: '', model: '', basis: 'api', priced: false, source: 'none', linked: false, contextTokens: 0, components: [], rates: null, longContext: null, lastCall: null },
+      getContextIntegration: { version: '', compatible: false, reason: 'missing' },
+    }[item.method]
+    assert.deepEqual(JSON.parse(JSON.stringify(item.result.schema.parse(host.result.schema.parse(sample)))), sample)
+  }
+  const compressed = client.dailyChartRows(Array.from({ length: 1000 }, (_, i) => ({ date: String(i), cost: 2, apiCost: 1 })), 'api')
+  assert.ok(compressed.length <= 60)
+  assert.equal(compressed.reduce((n, r) => n + r.value, 0), 1000, 'long-range charts preserve all spending')
+} finally { rmSync(root, { recursive: true, force: true }) }
+console.log('[ok] billing statistics: period filters, cross-day sessions, API/Plan, residues, paging, fork seeds, detail totals and lazy wire codecs')

@@ -1,0 +1,1703 @@
+{
+  "baselineCommit": "9725581bdbd19cf6a2ad2e7c02e0557f2e045771",
+  "date": "2026-10-18",
+  "localeBefore": {
+    "node": "v24.19.0",
+    "platform": "win32",
+    "cpu": "AMD Ryzen 7 5800H with Radeon Graphics         ",
+    "fixture": {
+      "plugins": 65,
+      "fieldsPerPlugin": 20,
+      "warmupCalls": 100
+    },
+    "rounds": [
+      {
+        "calls": 2000,
+        "describeCalls": 2000,
+        "elapsedMs": 1719.5802,
+        "cpuMs": 1719
+      },
+      {
+        "calls": 2000,
+        "describeCalls": 2000,
+        "elapsedMs": 1697.2475,
+        "cpuMs": 1703
+      },
+      {
+        "calls": 2000,
+        "describeCalls": 2000,
+        "elapsedMs": 1686.4107999999997,
+        "cpuMs": 1688
+      },
+      {
+        "calls": 2000,
+        "describeCalls": 2000,
+        "elapsedMs": 2008.3346000000001,
+        "cpuMs": 1953
+      },
+      {
+        "calls": 2000,
+        "describeCalls": 2000,
+        "elapsedMs": 2357.8196000000007,
+        "cpuMs": 2312
+      }
+    ],
+    "medianMs": 1719.5802,
+    "medianCpuMs": 1719,
+    "measuredDescribeCalls": 10000,
+    "networkCalls": 0
+  },
+  "localeAfter": {
+    "node": "v24.19.0",
+    "platform": "win32",
+    "cpu": "AMD Ryzen 7 5800H with Radeon Graphics         ",
+    "fixture": {
+      "plugins": 65,
+      "fieldsPerPlugin": 20,
+      "warmupCalls": 100
+    },
+    "rounds": [
+      {
+        "calls": 2000,
+        "describeCalls": 0,
+        "elapsedMs": 47.70709999999997,
+        "cpuMs": 78
+      },
+      {
+        "calls": 2000,
+        "describeCalls": 0,
+        "elapsedMs": 40.18520000000012,
+        "cpuMs": 48
+      },
+      {
+        "calls": 2000,
+        "describeCalls": 0,
+        "elapsedMs": 38.406099999999924,
+        "cpuMs": 31
+      },
+      {
+        "calls": 2000,
+        "describeCalls": 0,
+        "elapsedMs": 41.005300000000034,
+        "cpuMs": 47
+      },
+      {
+        "calls": 2000,
+        "describeCalls": 0,
+        "elapsedMs": 30.624499999999898,
+        "cpuMs": 31
+      }
+    ],
+    "medianMs": 40.18520000000012,
+    "medianCpuMs": 47,
+    "measuredDescribeCalls": 0,
+    "networkCalls": 0
+  },
+  "opacityBefore": {
+    "baseline": "9725581",
+    "checks": [
+      {
+        "theme": "light",
+        "alpha": 0,
+        "surface": "cm-section",
+        "opaque": false
+      },
+      {
+        "theme": "light",
+        "alpha": 0,
+        "surface": "cm-stat-dialog",
+        "opaque": false
+      },
+      {
+        "theme": "light",
+        "alpha": 0,
+        "surface": "cm-qguide",
+        "opaque": false
+      },
+      {
+        "theme": "light",
+        "alpha": 0,
+        "surface": "cm-peak-alert",
+        "opaque": false
+      },
+      {
+        "theme": "light",
+        "alpha": 0,
+        "surface": "cm-footer-stack simple",
+        "opaque": false
+      },
+      {
+        "theme": "light",
+        "alpha": 0,
+        "surface": "cm-simple-summary",
+        "opaque": false
+      },
+      {
+        "theme": "light",
+        "alpha": 0,
+        "surface": "cm-combo-panel",
+        "opaque": false
+      },
+      {
+        "theme": "light",
+        "alpha": 0,
+        "surface": "cm-context-intro",
+        "opaque": false
+      },
+      {
+        "theme": "light",
+        "alpha": 0,
+        "surface": "cm-stat",
+        "opaque": false
+      },
+      {
+        "theme": "light",
+        "alpha": 0,
+        "surface": "cm-fee-dialog",
+        "opaque": false
+      },
+      {
+        "theme": "light",
+        "alpha": 0,
+        "surface": "cm-billion-notice",
+        "opaque": false
+      },
+      {
+        "theme": "light",
+        "alpha": 0.2,
+        "surface": "cm-section",
+        "opaque": false
+      },
+      {
+        "theme": "light",
+        "alpha": 0.2,
+        "surface": "cm-stat-dialog",
+        "opaque": false
+      },
+      {
+        "theme": "light",
+        "alpha": 0.2,
+        "surface": "cm-qguide",
+        "opaque": false
+      },
+      {
+        "theme": "light",
+        "alpha": 0.2,
+        "surface": "cm-peak-alert",
+        "opaque": false
+      },
+      {
+        "theme": "light",
+        "alpha": 0.2,
+        "surface": "cm-footer-stack simple",
+        "opaque": false
+      },
+      {
+        "theme": "light",
+        "alpha": 0.2,
+        "surface": "cm-simple-summary",
+        "opaque": false
+      },
+      {
+        "theme": "light",
+        "alpha": 0.2,
+        "surface": "cm-combo-panel",
+        "opaque": false
+      },
+      {
+        "theme": "light",
+        "alpha": 0.2,
+        "surface": "cm-context-intro",
+        "opaque": false
+      },
+      {
+        "theme": "light",
+        "alpha": 0.2,
+        "surface": "cm-stat",
+        "opaque": false
+      },
+      {
+        "theme": "light",
+        "alpha": 0.2,
+        "surface": "cm-fee-dialog",
+        "opaque": false
+      },
+      {
+        "theme": "light",
+        "alpha": 0.2,
+        "surface": "cm-billion-notice",
+        "opaque": false
+      },
+      {
+        "theme": "light",
+        "alpha": 0.65,
+        "surface": "cm-section",
+        "opaque": false
+      },
+      {
+        "theme": "light",
+        "alpha": 0.65,
+        "surface": "cm-stat-dialog",
+        "opaque": false
+      },
+      {
+        "theme": "light",
+        "alpha": 0.65,
+        "surface": "cm-qguide",
+        "opaque": false
+      },
+      {
+        "theme": "light",
+        "alpha": 0.65,
+        "surface": "cm-peak-alert",
+        "opaque": false
+      },
+      {
+        "theme": "light",
+        "alpha": 0.65,
+        "surface": "cm-footer-stack simple",
+        "opaque": false
+      },
+      {
+        "theme": "light",
+        "alpha": 0.65,
+        "surface": "cm-simple-summary",
+        "opaque": false
+      },
+      {
+        "theme": "light",
+        "alpha": 0.65,
+        "surface": "cm-combo-panel",
+        "opaque": false
+      },
+      {
+        "theme": "light",
+        "alpha": 0.65,
+        "surface": "cm-context-intro",
+        "opaque": false
+      },
+      {
+        "theme": "light",
+        "alpha": 0.65,
+        "surface": "cm-stat",
+        "opaque": false
+      },
+      {
+        "theme": "light",
+        "alpha": 0.65,
+        "surface": "cm-fee-dialog",
+        "opaque": false
+      },
+      {
+        "theme": "light",
+        "alpha": 0.65,
+        "surface": "cm-billion-notice",
+        "opaque": false
+      },
+      {
+        "theme": "light",
+        "alpha": 1,
+        "surface": "cm-section",
+        "opaque": false
+      },
+      {
+        "theme": "light",
+        "alpha": 1,
+        "surface": "cm-stat-dialog",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 1,
+        "surface": "cm-qguide",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 1,
+        "surface": "cm-peak-alert",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 1,
+        "surface": "cm-footer-stack simple",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 1,
+        "surface": "cm-simple-summary",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 1,
+        "surface": "cm-combo-panel",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 1,
+        "surface": "cm-context-intro",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 1,
+        "surface": "cm-stat",
+        "opaque": false
+      },
+      {
+        "theme": "light",
+        "alpha": 1,
+        "surface": "cm-fee-dialog",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 1,
+        "surface": "cm-billion-notice",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 0,
+        "surface": "cm-section",
+        "opaque": false
+      },
+      {
+        "theme": "dark",
+        "alpha": 0,
+        "surface": "cm-stat-dialog",
+        "opaque": false
+      },
+      {
+        "theme": "dark",
+        "alpha": 0,
+        "surface": "cm-qguide",
+        "opaque": false
+      },
+      {
+        "theme": "dark",
+        "alpha": 0,
+        "surface": "cm-peak-alert",
+        "opaque": false
+      },
+      {
+        "theme": "dark",
+        "alpha": 0,
+        "surface": "cm-footer-stack simple",
+        "opaque": false
+      },
+      {
+        "theme": "dark",
+        "alpha": 0,
+        "surface": "cm-simple-summary",
+        "opaque": false
+      },
+      {
+        "theme": "dark",
+        "alpha": 0,
+        "surface": "cm-combo-panel",
+        "opaque": false
+      },
+      {
+        "theme": "dark",
+        "alpha": 0,
+        "surface": "cm-context-intro",
+        "opaque": false
+      },
+      {
+        "theme": "dark",
+        "alpha": 0,
+        "surface": "cm-stat",
+        "opaque": false
+      },
+      {
+        "theme": "dark",
+        "alpha": 0,
+        "surface": "cm-fee-dialog",
+        "opaque": false
+      },
+      {
+        "theme": "dark",
+        "alpha": 0,
+        "surface": "cm-billion-notice",
+        "opaque": false
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.2,
+        "surface": "cm-section",
+        "opaque": false
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.2,
+        "surface": "cm-stat-dialog",
+        "opaque": false
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.2,
+        "surface": "cm-qguide",
+        "opaque": false
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.2,
+        "surface": "cm-peak-alert",
+        "opaque": false
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.2,
+        "surface": "cm-footer-stack simple",
+        "opaque": false
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.2,
+        "surface": "cm-simple-summary",
+        "opaque": false
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.2,
+        "surface": "cm-combo-panel",
+        "opaque": false
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.2,
+        "surface": "cm-context-intro",
+        "opaque": false
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.2,
+        "surface": "cm-stat",
+        "opaque": false
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.2,
+        "surface": "cm-fee-dialog",
+        "opaque": false
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.2,
+        "surface": "cm-billion-notice",
+        "opaque": false
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.65,
+        "surface": "cm-section",
+        "opaque": false
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.65,
+        "surface": "cm-stat-dialog",
+        "opaque": false
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.65,
+        "surface": "cm-qguide",
+        "opaque": false
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.65,
+        "surface": "cm-peak-alert",
+        "opaque": false
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.65,
+        "surface": "cm-footer-stack simple",
+        "opaque": false
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.65,
+        "surface": "cm-simple-summary",
+        "opaque": false
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.65,
+        "surface": "cm-combo-panel",
+        "opaque": false
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.65,
+        "surface": "cm-context-intro",
+        "opaque": false
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.65,
+        "surface": "cm-stat",
+        "opaque": false
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.65,
+        "surface": "cm-fee-dialog",
+        "opaque": false
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.65,
+        "surface": "cm-billion-notice",
+        "opaque": false
+      },
+      {
+        "theme": "dark",
+        "alpha": 1,
+        "surface": "cm-section",
+        "opaque": false
+      },
+      {
+        "theme": "dark",
+        "alpha": 1,
+        "surface": "cm-stat-dialog",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 1,
+        "surface": "cm-qguide",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 1,
+        "surface": "cm-peak-alert",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 1,
+        "surface": "cm-footer-stack simple",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 1,
+        "surface": "cm-simple-summary",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 1,
+        "surface": "cm-combo-panel",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 1,
+        "surface": "cm-context-intro",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 1,
+        "surface": "cm-stat",
+        "opaque": false
+      },
+      {
+        "theme": "dark",
+        "alpha": 1,
+        "surface": "cm-fee-dialog",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 1,
+        "surface": "cm-billion-notice",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0,
+        "surface": "cm-section",
+        "opaque": false
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0,
+        "surface": "cm-stat-dialog",
+        "opaque": false
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0,
+        "surface": "cm-qguide",
+        "opaque": false
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0,
+        "surface": "cm-peak-alert",
+        "opaque": false
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0,
+        "surface": "cm-footer-stack simple",
+        "opaque": false
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0,
+        "surface": "cm-simple-summary",
+        "opaque": false
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0,
+        "surface": "cm-combo-panel",
+        "opaque": false
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0,
+        "surface": "cm-context-intro",
+        "opaque": false
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0,
+        "surface": "cm-stat",
+        "opaque": false
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0,
+        "surface": "cm-fee-dialog",
+        "opaque": false
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0,
+        "surface": "cm-billion-notice",
+        "opaque": false
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.2,
+        "surface": "cm-section",
+        "opaque": false
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.2,
+        "surface": "cm-stat-dialog",
+        "opaque": false
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.2,
+        "surface": "cm-qguide",
+        "opaque": false
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.2,
+        "surface": "cm-peak-alert",
+        "opaque": false
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.2,
+        "surface": "cm-footer-stack simple",
+        "opaque": false
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.2,
+        "surface": "cm-simple-summary",
+        "opaque": false
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.2,
+        "surface": "cm-combo-panel",
+        "opaque": false
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.2,
+        "surface": "cm-context-intro",
+        "opaque": false
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.2,
+        "surface": "cm-stat",
+        "opaque": false
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.2,
+        "surface": "cm-fee-dialog",
+        "opaque": false
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.2,
+        "surface": "cm-billion-notice",
+        "opaque": false
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.65,
+        "surface": "cm-section",
+        "opaque": false
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.65,
+        "surface": "cm-stat-dialog",
+        "opaque": false
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.65,
+        "surface": "cm-qguide",
+        "opaque": false
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.65,
+        "surface": "cm-peak-alert",
+        "opaque": false
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.65,
+        "surface": "cm-footer-stack simple",
+        "opaque": false
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.65,
+        "surface": "cm-simple-summary",
+        "opaque": false
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.65,
+        "surface": "cm-combo-panel",
+        "opaque": false
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.65,
+        "surface": "cm-context-intro",
+        "opaque": false
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.65,
+        "surface": "cm-stat",
+        "opaque": false
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.65,
+        "surface": "cm-fee-dialog",
+        "opaque": false
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.65,
+        "surface": "cm-billion-notice",
+        "opaque": false
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 1,
+        "surface": "cm-section",
+        "opaque": false
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 1,
+        "surface": "cm-stat-dialog",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 1,
+        "surface": "cm-qguide",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 1,
+        "surface": "cm-peak-alert",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 1,
+        "surface": "cm-footer-stack simple",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 1,
+        "surface": "cm-simple-summary",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 1,
+        "surface": "cm-combo-panel",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 1,
+        "surface": "cm-context-intro",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 1,
+        "surface": "cm-stat",
+        "opaque": false
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 1,
+        "surface": "cm-fee-dialog",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 1,
+        "surface": "cm-billion-notice",
+        "opaque": true
+      }
+    ],
+    "leaking": 105,
+    "errors": []
+  },
+  "opacityAfter": {
+    "baseline": null,
+    "checks": [
+      {
+        "theme": "light",
+        "alpha": 0,
+        "surface": "cm-section",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 0,
+        "surface": "cm-stat-dialog",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 0,
+        "surface": "cm-qguide",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 0,
+        "surface": "cm-peak-alert",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 0,
+        "surface": "cm-footer-stack simple",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 0,
+        "surface": "cm-simple-summary",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 0,
+        "surface": "cm-combo-panel",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 0,
+        "surface": "cm-context-intro",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 0,
+        "surface": "cm-stat",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 0,
+        "surface": "cm-fee-dialog",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 0,
+        "surface": "cm-billion-notice",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 0.2,
+        "surface": "cm-section",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 0.2,
+        "surface": "cm-stat-dialog",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 0.2,
+        "surface": "cm-qguide",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 0.2,
+        "surface": "cm-peak-alert",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 0.2,
+        "surface": "cm-footer-stack simple",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 0.2,
+        "surface": "cm-simple-summary",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 0.2,
+        "surface": "cm-combo-panel",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 0.2,
+        "surface": "cm-context-intro",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 0.2,
+        "surface": "cm-stat",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 0.2,
+        "surface": "cm-fee-dialog",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 0.2,
+        "surface": "cm-billion-notice",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 0.65,
+        "surface": "cm-section",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 0.65,
+        "surface": "cm-stat-dialog",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 0.65,
+        "surface": "cm-qguide",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 0.65,
+        "surface": "cm-peak-alert",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 0.65,
+        "surface": "cm-footer-stack simple",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 0.65,
+        "surface": "cm-simple-summary",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 0.65,
+        "surface": "cm-combo-panel",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 0.65,
+        "surface": "cm-context-intro",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 0.65,
+        "surface": "cm-stat",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 0.65,
+        "surface": "cm-fee-dialog",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 0.65,
+        "surface": "cm-billion-notice",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 1,
+        "surface": "cm-section",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 1,
+        "surface": "cm-stat-dialog",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 1,
+        "surface": "cm-qguide",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 1,
+        "surface": "cm-peak-alert",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 1,
+        "surface": "cm-footer-stack simple",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 1,
+        "surface": "cm-simple-summary",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 1,
+        "surface": "cm-combo-panel",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 1,
+        "surface": "cm-context-intro",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 1,
+        "surface": "cm-stat",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 1,
+        "surface": "cm-fee-dialog",
+        "opaque": true
+      },
+      {
+        "theme": "light",
+        "alpha": 1,
+        "surface": "cm-billion-notice",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 0,
+        "surface": "cm-section",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 0,
+        "surface": "cm-stat-dialog",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 0,
+        "surface": "cm-qguide",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 0,
+        "surface": "cm-peak-alert",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 0,
+        "surface": "cm-footer-stack simple",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 0,
+        "surface": "cm-simple-summary",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 0,
+        "surface": "cm-combo-panel",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 0,
+        "surface": "cm-context-intro",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 0,
+        "surface": "cm-stat",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 0,
+        "surface": "cm-fee-dialog",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 0,
+        "surface": "cm-billion-notice",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.2,
+        "surface": "cm-section",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.2,
+        "surface": "cm-stat-dialog",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.2,
+        "surface": "cm-qguide",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.2,
+        "surface": "cm-peak-alert",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.2,
+        "surface": "cm-footer-stack simple",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.2,
+        "surface": "cm-simple-summary",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.2,
+        "surface": "cm-combo-panel",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.2,
+        "surface": "cm-context-intro",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.2,
+        "surface": "cm-stat",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.2,
+        "surface": "cm-fee-dialog",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.2,
+        "surface": "cm-billion-notice",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.65,
+        "surface": "cm-section",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.65,
+        "surface": "cm-stat-dialog",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.65,
+        "surface": "cm-qguide",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.65,
+        "surface": "cm-peak-alert",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.65,
+        "surface": "cm-footer-stack simple",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.65,
+        "surface": "cm-simple-summary",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.65,
+        "surface": "cm-combo-panel",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.65,
+        "surface": "cm-context-intro",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.65,
+        "surface": "cm-stat",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.65,
+        "surface": "cm-fee-dialog",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 0.65,
+        "surface": "cm-billion-notice",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 1,
+        "surface": "cm-section",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 1,
+        "surface": "cm-stat-dialog",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 1,
+        "surface": "cm-qguide",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 1,
+        "surface": "cm-peak-alert",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 1,
+        "surface": "cm-footer-stack simple",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 1,
+        "surface": "cm-simple-summary",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 1,
+        "surface": "cm-combo-panel",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 1,
+        "surface": "cm-context-intro",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 1,
+        "surface": "cm-stat",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 1,
+        "surface": "cm-fee-dialog",
+        "opaque": true
+      },
+      {
+        "theme": "dark",
+        "alpha": 1,
+        "surface": "cm-billion-notice",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0,
+        "surface": "cm-section",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0,
+        "surface": "cm-stat-dialog",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0,
+        "surface": "cm-qguide",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0,
+        "surface": "cm-peak-alert",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0,
+        "surface": "cm-footer-stack simple",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0,
+        "surface": "cm-simple-summary",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0,
+        "surface": "cm-combo-panel",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0,
+        "surface": "cm-context-intro",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0,
+        "surface": "cm-stat",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0,
+        "surface": "cm-fee-dialog",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0,
+        "surface": "cm-billion-notice",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.2,
+        "surface": "cm-section",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.2,
+        "surface": "cm-stat-dialog",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.2,
+        "surface": "cm-qguide",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.2,
+        "surface": "cm-peak-alert",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.2,
+        "surface": "cm-footer-stack simple",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.2,
+        "surface": "cm-simple-summary",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.2,
+        "surface": "cm-combo-panel",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.2,
+        "surface": "cm-context-intro",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.2,
+        "surface": "cm-stat",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.2,
+        "surface": "cm-fee-dialog",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.2,
+        "surface": "cm-billion-notice",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.65,
+        "surface": "cm-section",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.65,
+        "surface": "cm-stat-dialog",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.65,
+        "surface": "cm-qguide",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.65,
+        "surface": "cm-peak-alert",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.65,
+        "surface": "cm-footer-stack simple",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.65,
+        "surface": "cm-simple-summary",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.65,
+        "surface": "cm-combo-panel",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.65,
+        "surface": "cm-context-intro",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.65,
+        "surface": "cm-stat",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.65,
+        "surface": "cm-fee-dialog",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 0.65,
+        "surface": "cm-billion-notice",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 1,
+        "surface": "cm-section",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 1,
+        "surface": "cm-stat-dialog",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 1,
+        "surface": "cm-qguide",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 1,
+        "surface": "cm-peak-alert",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 1,
+        "surface": "cm-footer-stack simple",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 1,
+        "surface": "cm-simple-summary",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 1,
+        "surface": "cm-combo-panel",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 1,
+        "surface": "cm-context-intro",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 1,
+        "surface": "cm-stat",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 1,
+        "surface": "cm-fee-dialog",
+        "opaque": true
+      },
+      {
+        "theme": "dark-skin-light-host",
+        "alpha": 1,
+        "surface": "cm-billion-notice",
+        "opaque": true
+      }
+    ],
+    "leaking": 0,
+    "errors": []
+  },
+  "clientBytes": {
+    "before": 261676,
+    "after": 260671
+  },
+  "dependencies": {
+    "acorn": "8.15.0",
+    "zod": "4.6.5",
+    "esbuild": "0.28.2"
+  }
+}

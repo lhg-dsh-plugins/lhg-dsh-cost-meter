@@ -1,0 +1,70 @@
+name: plugin-compatibility-watch
+
+on:
+  schedule:
+    - cron: '23 0 * * *'
+  workflow_dispatch:
+  push:
+    branches: [master]
+    paths:
+      - '.github/workflows/plugin-compatibility-watch.yml'
+      - 'scripts/watch-plugin-compatibility.mjs'
+      - 'docs/plugin-compatibility-baseline.json'
+      - 'lib/billion-context-patch.js'
+  pull_request:
+    paths:
+      - '.github/workflows/plugin-compatibility-watch.yml'
+      - 'scripts/watch-plugin-compatibility.mjs'
+      - 'test/plugin-compatibility-watch.mjs'
+      - 'docs/plugin-compatibility-baseline.json'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: plugin-compatibility-watch-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  watcher-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - run: npm install -g pnpm
+      - run: pnpm install --frozen-lockfile --ignore-scripts
+      - run: node test/plugin-compatibility-watch.mjs
+
+  check-upstream:
+    if: github.event_name != 'pull_request' && github.repository == 'Han-1413141/dsh-cost-meter'
+    needs: watcher-tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - run: npm install -g pnpm
+      - run: pnpm install --frozen-lockfile --ignore-scripts
+      - name: Inspect published interfaces and notify on changes
+        run: node scripts/watch-plugin-compatibility.mjs --notify
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      - name: Save compatibility evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: plugin-compatibility-report
+          path: |
+            .tmp-compatibility-watch/report.json
+            .tmp-compatibility-watch/report.md

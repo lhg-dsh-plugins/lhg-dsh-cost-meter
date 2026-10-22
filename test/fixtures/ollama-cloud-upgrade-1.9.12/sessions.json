@@ -1,0 +1,10 @@
+{
+  "morning": [
+    { "at": "2026-10-19T06:30:00.000Z", "provider": "ollama-cloud", "model": "deepseek-v4.1-flash", "input": 1000000 },
+    { "at": "2026-10-19T06:30:01.000Z", "provider": "ollama-cloud", "model": "deepseek-v4-pro", "input": 1000000 },
+    { "at": "2026-10-19T06:30:02.000Z", "provider": "deepseek-official", "model": "deepseek-v4.1-flash", "input": 1000000 }
+  ],
+  "afternoon": [
+    { "at": "2026-10-19T13:00:00.000Z", "provider": "ollama-cloud", "model": "deepseek-v4.1-flash", "input": 1000000 }
+  ]
+}

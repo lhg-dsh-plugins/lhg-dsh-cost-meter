@@ -1,0 +1,30 @@
+{
+  "morning": [
+    {
+      "at": "2026-10-19T07:00:00Z",
+      "provider": "ollama-cloud",
+      "model": "deepseek-v4.1-flash:1017",
+      "input": 1000000
+    },
+    {
+      "at": "2026-10-19T07:00:00Z",
+      "provider": "ollama-cloud",
+      "model": "deepseek-v4-pro:0813",
+      "input": 1000000
+    },
+    {
+      "at": "2026-10-19T07:00:00Z",
+      "provider": "deepseek-official",
+      "model": "deepseek-v4.1-flash",
+      "input": 1000000
+    }
+  ],
+  "afternoon": [
+    {
+      "at": "2026-10-19T13:00:00Z",
+      "provider": "ollama-cloud",
+      "model": "deepseek-v4.1-flash:1017",
+      "input": 1000000
+    }
+  ]
+}

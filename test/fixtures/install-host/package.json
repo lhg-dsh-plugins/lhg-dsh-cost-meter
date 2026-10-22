@@ -1,0 +1,11 @@
+{
+  "name": "dsh-cost-meter-test-host",
+  "private": true,
+  "description": "Known working DSH 0.2.x host dependency versions for install and RPC regression tests.",
+  "dependencies": {
+    "@deepseek-ai/dsh": "0.2.0-rc.2",
+    "@deepseek-ai/dsh-typert-loader": "0.2.0-rc.2",
+    "@deepseek-ai/dsh-typert-registry": "0.2.0-rc.2",
+    "@deepseek-ai/dsh-api-gateway": "0.2.0-rc.2"
+  }
+}
