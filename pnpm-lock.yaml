@@ -19,8 +19,8 @@ importers:
         specifier: 0.2.1-rc.1
         version: 0.2.1-rc.1(@deepseek-ai/cordis@4.0.5)
       '@deepseek-ai/dsh-home-paths':
-        specifier: 0.2.1-rc.1
-        version: 0.2.1-rc.1(@deepseek-ai/cordis@4.0.5)
+        specifier: 0.2.1-rc.2
+        version: 0.2.1-rc.2(@deepseek-ai/cordis@4.0.5)
       esbuild:
         specifier: ^0.28.2
         version: 0.28.2
@@ -52,8 +52,8 @@ packages:
     peerDependencies:
       '@deepseek-ai/cordis': ~4.0.5
 
-  '@deepseek-ai/dsh-home-paths@0.2.1-rc.1':
-    resolution: {integrity: sha512-WjLUeJHetJVHzDrWFHIMLzzMBWGbz7YUTeAbu2hAc/EyB9NUCE+BJ6OP2pZukb1VOMDT4mq+ZnJvPqnPcNr0fg==}
+  '@deepseek-ai/dsh-home-paths@0.2.1-rc.2':
+    resolution: {integrity: sha512-+byrn2eS9XaFt6pl1yZXIgkm7GbbzTwzX3Eo19Ew9P1xzzucw/j2HSmdFo221/GK+5PH7ct1ldeT+fAxAJ1e9w==}
     peerDependencies:
       '@deepseek-ai/cordis': ~4.0.5
 
@@ -247,7 +247,7 @@ snapshots:
       '@deepseek-ai/cordis': 4.0.5
       '@deepseek-ai/dsh-brand': 0.2.1-rc.1(@deepseek-ai/cordis@4.0.5)
 
-  '@deepseek-ai/dsh-home-paths@0.2.1-rc.1(@deepseek-ai/cordis@4.0.5)':
+  '@deepseek-ai/dsh-home-paths@0.2.1-rc.2(@deepseek-ai/cordis@4.0.5)':
     dependencies:
       '@deepseek-ai/cordis': 4.0.5
 
